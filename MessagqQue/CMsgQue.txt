@@ -1,0 +1,40 @@
+类结构说明：
+1.封装了boost库的message_queue，简化了message_queue的创建以及send和receive操作0。
+2.当只需要一个队列时，可以创建默认队列，需要使用多个队列时，可以根据名称创建新队列。
+3.允许任意数量的读程序和写程序
+
+函数接口说明：
+创建默认队列，默认队列名次"message_queue"，队列长度和最大消息长度都指定为1024
+CMsgQue();
+
+创建队列
+CMsgQue(const char* vMsgQueName,int vMaxQueLen,int vMaxMsgLen)
+指定了队列名次和队列长度以及每条消息的最大长度
+
+void sendMsg(T vSendMsg);
+向默认队列发送类型为T的数据,vSendMsg,默认队列为"message_queue"
+
+void sendMsg(T vSendMsg, const char* vMsgQueName); 
+重载函数
+向指定队列发送类型为T的数据
+
+T dumpReceiveMsg();
+接收默认队列的数据
+
+T dumpReceiveMsg(const char* vMsgQueName);
+接收制定队列的数据
+
+void removeMsgQue();
+移除默认队列
+void removeMsgQue(const char* vMsgQueName);
+移除指定队列
+
+特别说明：
+1.如果程序没有正常退出，务必在下次使用前在主程序调用removeMsg()函数清除已存在的队列
+2.根据网上一些资料显示，boost message_queue的加锁和解锁机制存在一定问题，以下网址中有问题描述：
+http://www.cppblog.com/true/archive/2008/07/31/57579.html
+http://stackoverflow.com/questions/11915142/64bit-and-32bit-process-intercommunication-boostmessage-queue?rq=1
+
+3.本程序在效率上存在一个问题，即每次读取数据时都需要打开一次message_queue，我尝试了很久将message_queue的对象
+提取出来作为类的private变量，但是会发生boost library_error或者初始化失败等很多错误
+
