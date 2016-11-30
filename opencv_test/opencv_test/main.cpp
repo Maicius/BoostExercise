@@ -13,11 +13,11 @@ int main(int argc, char **argv)
 	//initPicture();
 	//simpleChange();
 	//initCanny();
-	//readCamera(argc, argv);
+	readCamera(argc, argv);
 	//readCameraInformation();
 	//initPiexelSegment();
 	//createDemarcate();
-	imageTailor();
+	//imageTailor();
 	getchar();
 	return 0;
 }
