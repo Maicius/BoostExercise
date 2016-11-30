@@ -73,6 +73,7 @@
   <ItemGroup>
     <ClInclude Include="createDemarcate.hpp" />
     <ClInclude Include="doCanny.hpp" />
+    <ClInclude Include="ImageTailor.hpp" />
     <ClInclude Include="InitPicture.hpp" />
     <ClInclude Include="initPixelSegment.hpp" />
     <ClInclude Include="InitPlayAVI.hpp" />

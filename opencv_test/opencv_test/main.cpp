@@ -6,6 +6,7 @@
 #include "readCameraInformation.hpp"
 #include "initPixelSegment.hpp"
 #include "createDemarcate.hpp"
+#include "ImageTailor.hpp"
 int main(int argc, char **argv)
 {
 	//initPlayAVI();
@@ -13,9 +14,10 @@ int main(int argc, char **argv)
 	//simpleChange();
 	//initCanny();
 	//readCamera(argc, argv);
-	readCameraInformation();
+	//readCameraInformation();
 	//initPiexelSegment();
 	//createDemarcate();
+	imageTailor();
 	getchar();
 	return 0;
 }

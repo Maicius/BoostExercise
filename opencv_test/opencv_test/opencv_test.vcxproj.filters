@@ -42,6 +42,9 @@
     <ClInclude Include="createDemarcate.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ImageTailor.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
