@@ -1,16 +1,25 @@
-﻿生成启动时间为 2016/11/29 13:28:13。
-     1>项目“C:\Users\Maicius\documents\visual studio 2012\Projects\opencv_test\opencv_test\opencv_test.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2016/11/30 15:57:08。
+     1>项目“G:\C++Exercise\opencv_test\opencv_test\opencv_test.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          E:\VisualStudio2012\VC\bin\CL.exe /c /I"E:\AA实验室\SDK\OpenCV\include" /I"E:\AA实验室\SDK\OpenCV\include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
      1>e:\aa实验室\sdk\opencv\include\opencv2\flann\logger.h(66): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  e:\visualstudio2012\vc\include\stdio.h(218) : 参见“fopen”的声明
-     1>c:\users\maicius\documents\visual studio 2012\projects\opencv_test\opencv_test\docanny.hpp(18): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>g:\c++exercise\opencv_test\opencv_test\docanny.hpp(18): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>g:\c++exercise\opencv_test\opencv_test\initpixelsegment.hpp(12): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 e:\visualstudio2012\vc\include\stdio.h(218) : 参见“fopen”的声明
+     1>g:\c++exercise\opencv_test\opencv_test\initpixelsegment.hpp(13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 e:\visualstudio2012\vc\include\stdio.h(218) : 参见“fopen”的声明
+     1>g:\c++exercise\opencv_test\opencv_test\initpixelsegment.hpp(14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 e:\visualstudio2012\vc\include\stdio.h(218) : 参见“fopen”的声明
+     1>g:\c++exercise\opencv_test\opencv_test\initpixelsegment.hpp(9): warning C4101: “b”: 未引用的局部变量
+     1>g:\c++exercise\opencv_test\opencv_test\initpixelsegment.hpp(9): warning C4101: “g”: 未引用的局部变量
+     1>g:\c++exercise\opencv_test\opencv_test\initpixelsegment.hpp(9): warning C4101: “r”: 未引用的局部变量
        Link:
-         E:\VisualStudio2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Maicius\documents\visual studio 2012\Projects\opencv_test\Debug\opencv_test.exe" /INCREMENTAL /NOLOGO /LIBPATH:"E:\AA实验室\SDK\OpenCV\x86\vc12\lib" opencv_highgui248d.lib opencv_core248d.lib opencv_imgproc248d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Maicius\documents\visual studio 2012\Projects\opencv_test\Debug\opencv_test.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Maicius\documents\visual studio 2012\Projects\opencv_test\Debug\opencv_test.lib" /MACHINE:X86 Debug\main.obj
-         opencv_test.vcxproj -> C:\Users\Maicius\documents\visual studio 2012\Projects\opencv_test\Debug\opencv_test.exe
-     1>已完成生成项目“C:\Users\Maicius\documents\visual studio 2012\Projects\opencv_test\opencv_test\opencv_test.vcxproj”(Build 个目标)的操作。
+         E:\VisualStudio2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\C++Exercise\opencv_test\Debug\opencv_test.exe" /INCREMENTAL /NOLOGO /LIBPATH:"E:\AA实验室\SDK\OpenCV\x86\vc12\lib" opencv_highgui248d.lib opencv_core248d.lib opencv_imgproc248d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"G:\C++Exercise\opencv_test\Debug\opencv_test.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\C++Exercise\opencv_test\Debug\opencv_test.lib" /MACHINE:X86 Debug\main.obj
+         opencv_test.vcxproj -> G:\C++Exercise\opencv_test\Debug\opencv_test.exe
+     1>已完成生成项目“G:\C++Exercise\opencv_test\opencv_test\opencv_test.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:04.55
+已用时间 00:00:02.42

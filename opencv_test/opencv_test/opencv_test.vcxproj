@@ -71,8 +71,10 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="createDemarcate.hpp" />
     <ClInclude Include="doCanny.hpp" />
     <ClInclude Include="InitPicture.hpp" />
+    <ClInclude Include="initPixelSegment.hpp" />
     <ClInclude Include="InitPlayAVI.hpp" />
     <ClInclude Include="readCamera.hpp" />
     <ClInclude Include="readCameraInformation.hpp" />

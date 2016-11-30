@@ -4,14 +4,18 @@
 #include "doCanny.hpp"
 #include "readCamera.hpp"
 #include "readCameraInformation.hpp"
+#include "initPixelSegment.hpp"
+#include "createDemarcate.hpp"
 int main(int argc, char **argv)
 {
 	//initPlayAVI();
 	//initPicture();
 	//simpleChange();
-	initCanny();
+	//initCanny();
 	//readCamera(argc, argv);
-	//readCameraInformation();
+	readCameraInformation();
+	//initPiexelSegment();
+	//createDemarcate();
 	getchar();
 	return 0;
 }

@@ -3,7 +3,7 @@ void readCameraInformation()
 {
 	std::cout<<"Press ESC to escape"<<std::endl;
 	cvNamedWindow("Play",CV_WINDOW_AUTOSIZE);
-	CvCapture *capture = cvCreateCameraCapture(0);
+	CvCapture *capture = cvCreateCameraCapture(1);
 	if(!capture){
 		std::cout<<"No camera detected!"<<std::endl;
 		exit(0);
@@ -14,7 +14,7 @@ void readCameraInformation()
 	while((frame = cvQueryFrame(capture)) !=NULL){
 		if(!frame)
 			break;
-		cvSmooth(frame, frameOut, CV_GAUSSIAN, 9, 9);
+		//cvSmooth(frame, frameOut, CV_GAUSSIAN, 9, 9);
 		cvShowImage("Play", frameOut);
 		char c = cvWaitKey(33);
 		if (c == 27)
