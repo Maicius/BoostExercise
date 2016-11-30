@@ -1,3 +1,4 @@
+#include <afx.h>
 #include "stdafx.h"
 
 using namespace cv;
