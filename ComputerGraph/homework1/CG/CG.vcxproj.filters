@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\Desktop\CGHomework.cpp">
+    <ClCompile Include="..\CGHomework.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

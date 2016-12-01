@@ -31,6 +31,8 @@ GLfloat axis[3] = { 0.0, 0.0, 0.1 };
 int curx, cury;
 int startX, startY;
 
+static int m=2;
+
 GLfloat vertices[4][3]={{0.0, 0.0, 1.0}, {0.0, 0.942809, -0.33333},
 {-0.816497, -0.471405, -0.333333}, {0.816497, -0.471405, -0.333333}};
 GLfloat colors[4][3] = {{1.0, 0.0, 0.0}, {0.0, 1.0, 0.0},
@@ -77,7 +79,7 @@ void divide_tetra(GLfloat *a, GLfloat *b, GLfloat *c, GLfloat *d, int m)
 		divide_tetra(a, mid[0], mid[1], mid[2], m-1);
 		divide_tetra(mid[0], b, mid[3], mid[5], m-1);
 		divide_tetra(mid[1], mid[3], c, mid[4], m-1);
-		divide_tetra(mid[2], mid[4], d, mid[5], m-1);
+		divide_tetra(mid[2], mid[5],mid[4], d , m-1);
 
 	}
 	else(tetra(a,b,c,d)); /* draw tetrahedron at end of recursion */
@@ -184,7 +186,7 @@ void display()
 	glMultMatrixf(p_CompositeTransMatrix);	
 
 	//colorcube();
-	divide_tetra(vertices[0], vertices[1], vertices[2], vertices[3], 3);
+	divide_tetra(vertices[0], vertices[1], vertices[2], vertices[3], m);
 	/*注意这里采用的是立即显示，没有用动画模式，为得是让转动速度减慢
 	如果采用双帧，则鼠标拖动时，立方体会转得非常快*/
 	glFlush();
