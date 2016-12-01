@@ -1,0 +1,23 @@
+﻿生成启动时间为 2016/9/12 22:31:04。
+     1>项目“C:\Users\Maicius\documents\visual studio 2012\Projects\openGL_test\book\book.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\VisualStudio2012\VC\bin\CL.exe /c /I"E:\AA实验室\oglpg-8th-edition\include" /I"E:\AA实验室\SDK\OpenGL\include" /I"E:\AA实验室\SDK\ImageMagick-6\include" /I"E:\AA实验室\SDK\Assimp\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Triangles.cpp
+         Triangles.cpp
+     1>c:\users\maicius\documents\visual studio 2012\projects\opengl_test\book\triangles.cpp(42): warning C4305: “初始化”: 从“double”到“GLfloat”截断
+     1>c:\users\maicius\documents\visual studio 2012\projects\opengl_test\book\triangles.cpp(43): warning C4305: “初始化”: 从“double”到“GLfloat”截断
+     1>c:\users\maicius\documents\visual studio 2012\projects\opengl_test\book\triangles.cpp(44): warning C4305: “初始化”: 从“double”到“GLfloat”截断
+     1>c:\users\maicius\documents\visual studio 2012\projects\opengl_test\book\triangles.cpp(45): warning C4305: “初始化”: 从“double”到“GLfloat”截断
+     1>c:\users\maicius\documents\visual studio 2012\projects\opengl_test\book\triangles.cpp(46): warning C4305: “初始化”: 从“double”到“GLfloat”截断
+     1>c:\users\maicius\documents\visual studio 2012\projects\opengl_test\book\triangles.cpp(47): warning C4305: “初始化”: 从“double”到“GLfloat”截断
+     1>c:\users\maicius\documents\visual studio 2012\projects\opengl_test\book\triangles.cpp(97): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
+     1>c:\users\maicius\documents\visual studio 2012\projects\opengl_test\book\triangles.cpp(98): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
+       Link:
+         E:\VisualStudio2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Maicius\documents\visual studio 2012\Projects\openGL_test\Debug\book.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libcmtd.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Maicius\documents\visual studio 2012\Projects\openGL_test\Debug\book.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Maicius\documents\visual studio 2012\Projects\openGL_test\Debug\book.lib" /MACHINE:X86 Debug\LoadShaderFromCode.obj
+         Debug\LoadShaders.obj
+         Debug\Triangles.obj
+         book.vcxproj -> C:\Users\Maicius\documents\visual studio 2012\Projects\openGL_test\Debug\book.exe
+     1>已完成生成项目“C:\Users\Maicius\documents\visual studio 2012\Projects\openGL_test\book\book.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.57

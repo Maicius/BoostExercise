@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "openGL_test", "openGL_test\openGL_test.vcxproj", "{34B01924-C4A7-41A8-8D89-14BF84DC0DF5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "book", "book\book.vcxproj", "{ED991A2B-63EA-4BC7-A120-E8C1A86882A0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PerPixelShaderLight", "PerPixelShaderLight\PerPixelShaderLight.vcxproj", "{99953D5E-9C74-403F-8D90-F138AB5C1DB7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CGHomework2", "CGHomework2\CGHomework2.vcxproj", "{CABA0340-2344-481A-B7F2-16177FE1FF24}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34B01924-C4A7-41A8-8D89-14BF84DC0DF5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{34B01924-C4A7-41A8-8D89-14BF84DC0DF5}.Debug|Win32.Build.0 = Debug|Win32
+		{34B01924-C4A7-41A8-8D89-14BF84DC0DF5}.Release|Win32.ActiveCfg = Release|Win32
+		{34B01924-C4A7-41A8-8D89-14BF84DC0DF5}.Release|Win32.Build.0 = Release|Win32
+		{ED991A2B-63EA-4BC7-A120-E8C1A86882A0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ED991A2B-63EA-4BC7-A120-E8C1A86882A0}.Debug|Win32.Build.0 = Debug|Win32
+		{ED991A2B-63EA-4BC7-A120-E8C1A86882A0}.Release|Win32.ActiveCfg = Release|Win32
+		{ED991A2B-63EA-4BC7-A120-E8C1A86882A0}.Release|Win32.Build.0 = Release|Win32
+		{99953D5E-9C74-403F-8D90-F138AB5C1DB7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{99953D5E-9C74-403F-8D90-F138AB5C1DB7}.Debug|Win32.Build.0 = Debug|Win32
+		{99953D5E-9C74-403F-8D90-F138AB5C1DB7}.Release|Win32.ActiveCfg = Release|Win32
+		{99953D5E-9C74-403F-8D90-F138AB5C1DB7}.Release|Win32.Build.0 = Release|Win32
+		{CABA0340-2344-481A-B7F2-16177FE1FF24}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CABA0340-2344-481A-B7F2-16177FE1FF24}.Debug|Win32.Build.0 = Debug|Win32
+		{CABA0340-2344-481A-B7F2-16177FE1FF24}.Release|Win32.ActiveCfg = Release|Win32
+		{CABA0340-2344-481A-B7F2-16177FE1FF24}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

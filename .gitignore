@@ -1,3 +1,4 @@
 opencv_test/opencv_test/File/
 *.sdf
 *.exe
+*.opensdf

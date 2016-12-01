@@ -1,0 +1,13 @@
+﻿生成启动时间为 2016/11/1 12:41:51。
+     1>项目“C:\Users\Maicius\documents\visual studio 2012\Projects\openGL_test\openGL_test\openGL_test.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\VisualStudio2012\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt shadering.cpp shaderingTest.cpp test.cpp
+         shadering.cpp
+         shaderingTest.cpp
+     1>shaderingTest.cpp(2): fatal error C1083: 无法打开包括文件:“GL/glew.h”: No such file or directory
+         test.cpp
+     1>已完成生成项目“C:\Users\Maicius\documents\visual studio 2012\Projects\openGL_test\openGL_test\openGL_test.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:01.81
