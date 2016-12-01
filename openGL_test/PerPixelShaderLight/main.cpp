@@ -28,14 +28,14 @@ public:
 static void RenderSceneCB()
 
 {
-	//glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, FBO);
-	//glPushAttrib(GL_VIEWPORT_BIT);
-	//glViewport(0, 0, 1080, 720);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, FBO);
+	glPushAttrib(GL_VIEWPORT_BIT);
+	glViewport(0, 0, 1080, 720);
 
-	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glEnable(GL_TEXTURE_2D);
-	//glBindTexture(GL_TEXTURE_2D, TextureName);
-	//glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, TextureName);
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
 	UpdateMatrix();
 	glUniformMatrix4fv(MVPLocation, 1, GL_TRUE, value_ptr(MVP));

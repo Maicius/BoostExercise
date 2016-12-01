@@ -1,18 +1,17 @@
-﻿生成启动时间为 2016/10/23 14:30:16。
-     1>项目“C:\Users\Maicius\Documents\Visual Studio 2012\Projects\openGL_test\PerPixelShaderLight\PerPixelShaderLight.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2016/12/1 20:49:15。
+     1>项目“G:\C++Exercise\openGL_test\PerPixelShaderLight\PerPixelShaderLight.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          E:\VisualStudio2012\VC\bin\CL.exe /c /I"E:\AA实验室\SDK\OpenGL\include" /I"E:\AA实验室\SDK\glm" /I"E:\AA实验室\Simple OpenGL Image Library\src" /I"E:\AA实验室\SDK\Assimp\include" /I"E:\AA实验室\SDK\ImageMagick-6\include" /AI"E:\AA实验室\SDK\OpenGL\include" /AI"E:\AA实验室\SDK\glm" /AI"E:\AA实验室\Simple OpenGL Image Library\lib" /AI"E:\AA实验室\SDK\Assimp\include" /AI"E:\AA实验室\SDK\ImageMagick-6\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /wd4251 /analyze- /errorReport:prompt main.cpp
          main.cpp
        Link:
-         E:\VisualStudio2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Maicius\Documents\Visual Studio 2012\Projects\openGL_test\Debug\PerPixelShaderLight.exe" /INCREMENTAL /NOLOGO /LIBPATH:"E:\AA实验室\SDK\OpenGL\lib" /LIBPATH:"E:\AA实验室\SDK\glm" /LIBPATH:"E:\AA实验室\Simple OpenGL Image Library\lib" /LIBPATH:"E:\AA实验室\SDK\ImageMagick-6\lib" /LIBPATH:"E:\AA实验室\SDK\Assimp\lib" assimp.lib msvcrtd.lib CORE_DB_Magick++_.lib CORE_RL_Magick++_.lib SOIL.lib glew32.lib glfw3.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libcmt.lib /NODEFAULTLIB:libc.lib /NODEFAULTLIB:libcd.lib /NODEFAULTLIB:libcmtd.lib /NODEFAULTLIB:msvcrtd.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Maicius\Documents\Visual Studio 2012\Projects\openGL_test\Debug\PerPixelShaderLight.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Maicius\Documents\Visual Studio 2012\Projects\openGL_test\Debug\PerPixelShaderLight.lib" /MACHINE:X86 Debug\Maintest.obj
+         E:\VisualStudio2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\C++Exercise\openGL_test\Debug\PerPixelShaderLight.exe" /INCREMENTAL /NOLOGO /LIBPATH:"E:\AA实验室\SDK\OpenGL\lib" /LIBPATH:"E:\AA实验室\SDK\glm" /LIBPATH:"E:\AA实验室\Simple OpenGL Image Library\lib" /LIBPATH:"E:\AA实验室\SDK\ImageMagick-6\lib" /LIBPATH:"E:\AA实验室\SDK\Assimp\lib" assimp.lib msvcrtd.lib CORE_DB_Magick++_.lib CORE_RL_Magick++_.lib SOIL.lib glew32.lib glfw3.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libcmt.lib /NODEFAULTLIB:libc.lib /NODEFAULTLIB:libcd.lib /NODEFAULTLIB:libcmtd.lib /NODEFAULTLIB:msvcrtd.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"G:\C++Exercise\openGL_test\Debug\PerPixelShaderLight.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\C++Exercise\openGL_test\Debug\PerPixelShaderLight.lib" /MACHINE:X86 Debug\Maintest.obj
          Debug\Mesh.obj
          Debug\Model.obj
          Debug\main.obj
          Debug\Shader.obj
-     1>msvcrtd.lib(cinitexe.obj) : warning LNK4098: 默认库“msvcrt.lib”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
-         PerPixelShaderLight.vcxproj -> C:\Users\Maicius\Documents\Visual Studio 2012\Projects\openGL_test\Debug\PerPixelShaderLight.exe
-     1>已完成生成项目“C:\Users\Maicius\Documents\Visual Studio 2012\Projects\openGL_test\PerPixelShaderLight\PerPixelShaderLight.vcxproj”(Build 个目标)的操作。
+         PerPixelShaderLight.vcxproj -> G:\C++Exercise\openGL_test\Debug\PerPixelShaderLight.exe
+     1>已完成生成项目“G:\C++Exercise\openGL_test\PerPixelShaderLight\PerPixelShaderLight.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:03.20
+已用时间 00:00:02.23
