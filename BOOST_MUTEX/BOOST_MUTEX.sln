@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BOOST_MUTEX", "BOOST_MUTEX\BOOST_MUTEX.vcxproj", "{6861D316-BE6C-4715-9A68-EFD1D1611360}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project1", "Project1\Project1.vcxproj", "{1AEB3F9C-4A7D-4535-A20A-8CADE23803AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6861D316-BE6C-4715-9A68-EFD1D1611360}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6861D316-BE6C-4715-9A68-EFD1D1611360}.Debug|Win32.Build.0 = Debug|Win32
+		{6861D316-BE6C-4715-9A68-EFD1D1611360}.Release|Win32.ActiveCfg = Release|Win32
+		{6861D316-BE6C-4715-9A68-EFD1D1611360}.Release|Win32.Build.0 = Release|Win32
+		{1AEB3F9C-4A7D-4535-A20A-8CADE23803AF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1AEB3F9C-4A7D-4535-A20A-8CADE23803AF}.Debug|Win32.Build.0 = Debug|Win32
+		{1AEB3F9C-4A7D-4535-A20A-8CADE23803AF}.Release|Win32.ActiveCfg = Release|Win32
+		{1AEB3F9C-4A7D-4535-A20A-8CADE23803AF}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
