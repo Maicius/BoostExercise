@@ -16,20 +16,13 @@
 #include <windows.h>  
 #include <iostream>
 using namespace std;   
-using namespace cv;
-
-
-
-	
+using namespace cv;	
 	IplImage *frame;
-
-
 	IplImage *Imask_ROI_L=NULL;
 	IplImage *Imask_ROI_R=NULL;
 	
     IplImage *image_L=NULL;    
     IplImage *image_R=NULL;    
-
 	
 	int width;
 	int height;
@@ -37,7 +30,6 @@ using namespace cv;
            IplImage* leftImage ;
 	       IplImage* rightImage ;
 	       IplImage* depthImage ;
-
 
 	void stere();
 	void  stere_BM();
@@ -88,11 +80,11 @@ int main()
  
 	//-------------------------------------------------------
 
-	CvVideoWriter *writer_L =cvCreateVideoWriter("D://write-1-L.avi", 4, 30, cvSize(800,600),1);//create writer  
+	CvVideoWriter *writer_L =cvCreateVideoWriter("G://write-1-L.avi", 4, 30, cvSize(800,600),1);//create writer  
 
-	CvVideoWriter *writer_R =cvCreateVideoWriter("D://write-1-R.avi", 4, 30, cvSize(800,600),1);//create writer  
+	CvVideoWriter *writer_R =cvCreateVideoWriter("G://write-1-R.avi", 4, 30, cvSize(800,600),1);//create writer  
 
-	CvVideoWriter *writer =cvCreateVideoWriter("D://write-1-double.avi", 4, 30, cvSize(1600,600),1);//create writer  
+	CvVideoWriter *writer =cvCreateVideoWriter("G://write-1-double.avi", 4, 30, cvSize(1600,600),1);//create writer  
 
 //*****************************************************************************
 
@@ -160,9 +152,7 @@ int main()
 				      cvShowImage("src",frame);  
 				      cvShowImage("Imask_ROI_R",Imask_ROI_R); 
 					  cvShowImage("Imask_ROI_L",Imask_ROI_L);
-        	         
-
-				   				   
+        	          				   
 				     cvReleaseImage(&Imask_ROI_R); 
 	                 cvReleaseImage(&Imask_ROI_L); 
 					 cvReleaseImage(&image_L); 
@@ -176,12 +166,8 @@ int main()
 	        
 	}
 	
-	
 	cvReleaseVideoWriter(&writer_R);  
 	cvReleaseVideoWriter(&writer_L);  
-
-
-
 	 cvDestroyAllWindows(); 
 	
      camera.CloseCamera(); //可不调用此函数，CCameraDS析构时会自动关闭摄像头
