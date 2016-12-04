@@ -3,7 +3,7 @@ void readCamera(int argc, char **argv)
 {
 	CvCapture *capture;
 	if(argc ==1){
-		capture = cvCreateCameraCapture(1);
+		capture = cvCreateCameraCapture(0);
 	} else {
 		capture = cvCreateFileCapture(argv[1]);
 	}
@@ -21,11 +21,12 @@ void readCamera(int argc, char **argv)
 	char stop;
 	while(true) {
 		frame = cvQueryFrame(capture);
+		std::cout<<(int)frame<<std::endl;
 		//fps = cvGetCaptureProperty(capture, CV_CAP_PROP_FPS);
 		//std::cout<<fps<<std::endl;
 		//logpolar_frame->nChannels = 1;
-		cvWriteFrame(writer, frame);
-		cvShowImage("Play", frame);
+		//cvWriteFrame(writer, frame);
+		//cvShowImage("Play", frame);
 		stop = cvWaitKey(33);
 		if(stop ==27)
 			break;
