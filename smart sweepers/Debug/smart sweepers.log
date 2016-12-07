@@ -1,0 +1,25 @@
+﻿生成启动时间为 2016/12/7 19:04:42。
+     1>项目“F:\AAA大三课程\Chapter08\smart sweepers - v2.2\smart sweepers.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         E:\VisualStudio2012\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /Gy- /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug\\" /Fd".\Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>f:\aaa大三课程\chapter08\smart sweepers - v2.2\cminesweeper.h(111): warning C4244: “return”: 从“const double”转换到“float”，可能丢失数据
+     1>f:\aaa大三课程\chapter08\smart sweepers - v2.2\main.cpp(250): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+       Link:
+         E:\VisualStudio2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug\smart sweepers.exe" /INCREMENTAL /NOLOGO odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:".\Debug\smart sweepers.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\Debug\smart sweepers.lib" /MACHINE:X86 /SAFESEH .\Debug\C2DMatrix.obj
+         .\Debug\CController.obj
+         .\Debug\CGenAlg.obj
+         .\Debug\CMapper.obj
+         .\Debug\CMinesweeper.obj
+         .\Debug\CNeuralNet.obj
+         .\Debug\collision.obj
+         .\Debug\CParams.obj
+         .\Debug\CTimer.obj
+         .\Debug\main.obj
+         .\Debug\utils.obj
+         smart sweepers.vcxproj -> F:\AAA大三课程\Chapter08\smart sweepers - v2.2\.\Debug\smart sweepers.exe
+     1>已完成生成项目“F:\AAA大三课程\Chapter08\smart sweepers - v2.2\smart sweepers.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.64
