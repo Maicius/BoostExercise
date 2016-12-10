@@ -12,7 +12,7 @@ mode 3 = interpolative shading */
 
 #include <openGL/freeglut.h>
 #include <math.h>
-
+#include <iostream>
 typedef float point[4];
 
 /* initial tetrahedron */
@@ -155,11 +155,22 @@ void myinit()
 	glClearColor(1.0, 1.0, 1.0, 1.0);
 	glColor3f(0.0, 0.0, 0.0);
 }
+void key_callback(unsigned char key, int x, int y){
+	//std::cout<<"ÇëÊäÈëµÝ¹é´ÎÊýN>>";
+	int number = (int)key;
+	if(number < 49 || number > 55){
+	}
+	else{
+		std::cout<<number-49<<std::endl;
+		n = number-49;
+		display();
+	}
+}
 
 void
 main(int argc, char **argv)
 {
-	n = 5;
+	n=5;
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(500, 500);
@@ -167,5 +178,6 @@ main(int argc, char **argv)
 	myinit();
 	glutReshapeFunc(myReshape);
 	glutDisplayFunc(display);
+	glutKeyboardFunc(key_callback);
 	glutMainLoop();
 }
