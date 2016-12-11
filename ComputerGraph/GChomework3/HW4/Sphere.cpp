@@ -1,11 +1,11 @@
 //
-///* Recursive subdivision of cube (Chapter 6). Three display
+//* Recursive subdivision of cube (Chapter 6). Three display
 //modes: wire frame, constant, and interpolative shading */
 //
-///*Program also illustrates defining materials and light sources 
+//*Program also illustrates defining materials and light sources 
 //in myiit() */
 //
-///* mode 0 = wire frame, mode 1 = constant shading,
+//* mode 0 = wire frame, mode 1 = constant shading,
 //mode 3 = interpolative shading */
 //
 //
@@ -15,7 +15,7 @@
 //#include <iostream>
 //typedef float point[4];
 //
-///* initial tetrahedron */
+//* initial tetrahedron */
 //
 //point v[] = { { 0.0, 0.0, 1.0 }, { 0.0, 0.942809, -0.33333 },
 //{ -0.816497, -0.471405, -0.333333 }, { 0.816497, -0.471405, -0.333333 } };
