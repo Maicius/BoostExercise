@@ -62,9 +62,6 @@ void tetrahedron(int m);
 void display();
 void myidle();
 void myMouse(int Botton, int State, int MouseX, int MouseY);
-void Perspective(int w, int h);
-void Orthographic(int w, int h);
-void Draw_menu(int index);
 void myReshape(int w, int h);
 void triangle(point a, point b, point c);
 void normal(point p);
@@ -246,65 +243,6 @@ void myMouse(int Botton, int State, int MouseX, int MouseY)
 		
 }
 
-void Perspective(int w, int h)
-{
-	glViewport(0, 0, w, h);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	//glFrustum(-3, 3, -3, 3, 0, 4);
-	if (w <= h)
-		glFrustum(-2.0, 2.0, -2.0 * (GLfloat)h / (GLfloat)w,
-		2.0 * (GLfloat)h / (GLfloat)w, Near, Far);
-	else
-		glFrustum(-2.0 * (GLfloat)w / (GLfloat)h,
-		2.0 * (GLfloat)w / (GLfloat)h, -2.0, 2.0, Near, Far);
-	glutPostRedisplay();
-
-	//需要这两条语句，使得跟踪球交互操作正确
-	winWidth = w;
-	winHeight = h;
-}
-
-void Orthographic(int w, int h)
-{
-	glViewport(0, 0, w, h);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	if (w <= h)
-		glOrtho(-2.0, 2.0, -2.0 * (GLfloat)h / (GLfloat)w,
-		2.0 * (GLfloat)h / (GLfloat)w, Near, Far);
-	else
-		glOrtho(-2.0 * (GLfloat)w / (GLfloat)h,
-		2.0 * (GLfloat)w / (GLfloat)h, -2.0, 2.0, Near,Far);
-	glMatrixMode(GL_MODELVIEW);
-	glutPostRedisplay();
-
-	//需要这两条语句，使得跟踪球交互操作正确
-	winWidth = w;
-	winHeight = h;
-
-}
-void Draw_menu(int index)
-{
-	switch (index)
-	{
-	case (1) :
-	{
-				 Orthographic(winWidth, winHeight);
-				 projectStyle = 1;
-				 glutPostRedisplay();
-				 break;
-	}
-
-	case (2) :
-	{
-				 Perspective(winWidth, winHeight);				 
-				 projectStyle = 2;
-				 glutPostRedisplay();
-				 break;
-	}
-	}
-}
 
 void myReshape(int w, int h)
 {
@@ -387,9 +325,9 @@ void myinit()
 	GLfloat mat_shininess = { 100.0 };
 	GLfloat light_ambient[] = { 0.0, 0.0, 0.0, 1.0 };
 	GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+	GLfloat light_specular[] = { 0.0, 1.0, 1.0, 1.0 };
 
-	GLfloat light_position[] = {0.0, 0.0};
+	GLfloat light_position[] = {0.0, 0.0, 0.0, 1.0};
 	/* set up ambient, diffuse, and specular components for light 0 */
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
