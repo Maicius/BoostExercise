@@ -20,7 +20,7 @@ point v[] = { { 0.0, 0.0, 1.0 }, { 0.0, 0.942809, -0.33333 },
 { -0.816497, -0.471405, -0.333333 }, { 0.816497, -0.471405, -0.333333 } };
 float  CompositeTransMatrix[4][4]= {{ 1.0, 0.0, 0.0, 0.0 }, { 0.0, 1.0, 0.0, 0.0 }, { 0.0, 0.0, 1.0, 0.0 }, { 0.0, 0.0, 0.0, 1.0 } };
 float *p_CompositeTransMatrix = *CompositeTransMatrix;
-GLuint texture1, texture2, texture3;
+GLuint texture1, texture2, texture3, texture4;
 float Mlookup[4][4]= {{ 1.0, 0.0, 0.0, 0.0 }, { 0.0, 1.0, 0.0, 0.0 }, { 0.0, 0.0, 1.0, 0.0 }, { 0.0, 0.0, 0.0, 1.0 } };;
 float *p_Mlookup = *Mlookup;
 GLfloat colorR=1.0, colorG=0.0, colorB=0.0;
@@ -90,6 +90,7 @@ int main(int argc, char **argv)
 	texture1=generateTexture("texture.png");
 	texture2=generateTexture("wall.jpg");
 	texture3=generateTexture("xuzifan.jpg");
+	texture4=generateTexture("texture_a.png");
 	glutCreateMenu(Draw_menu);//菜单回调函数
 	glutAddMenuEntry("Orthographic", 1);
 	glutAddMenuEntry("Perspective", 2);
@@ -102,21 +103,30 @@ int main(int argc, char **argv)
 
 	glutMainLoop();
 }
+
 GLuint generateTexture(const char* texture_name)
 {
 	GLuint texture;
 	glEnable(GL_TEXTURE_2D);
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
+
+	int texWidth, texHeight;
+	unsigned char  *image = SOIL_load_image(texture_name,&texWidth, &texHeight, 0, SOIL_LOAD_RGBA);
+	if(image== NULL)
+		std::cout<<"Failed to load Image:"<<texture_name<<std::endl;
+    
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	int texWidth, texHeight;
-	unsigned char *image = SOIL_load_image(texture_name,&texWidth, &texHeight, 0, SOIL_LOAD_RGBA);
-	if(image== NULL)
-		std::cout<<"Failed to load Image:"<<texture_name<<std::endl;
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
+	gluBuild2DMipmaps(GL_TEXTURE_2D, 4, texWidth, texHeight, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND);
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0.5);
 	//glGenerateMipmap(GL_TEXTURE_2D);
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -154,11 +164,11 @@ void colorcube(void)
 	/* map vertices to faces */
 	glBindTexture(GL_TEXTURE_2D, texture1);
 	polygon(1, 0, 3, 2, 0);
-	glBindTexture(GL_TEXTURE_2D, texture1);
+	glBindTexture(GL_TEXTURE_2D, texture3);
 	polygon(3, 7, 6, 2, 1);
 	glBindTexture(GL_TEXTURE_2D, texture3);
 	polygon(7, 3, 0, 4, 2);
-	glBindTexture(GL_TEXTURE_2D, texture3);
+	glBindTexture(GL_TEXTURE_2D, texture2);
 	polygon(2, 6, 5, 1, 3);
 	glBindTexture(GL_TEXTURE_2D, texture1);
 	polygon(4, 5, 6, 7, 4);
