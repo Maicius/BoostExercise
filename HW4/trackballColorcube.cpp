@@ -126,7 +126,7 @@ GLuint generateTexture(const char* texture_name)
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_BLEND);
 	glEnable(GL_ALPHA_TEST);
-	glAlphaFunc(GL_GREATER, 0.5);
+	glAlphaFunc(GL_GREATER, 0);
 	//glGenerateMipmap(GL_TEXTURE_2D);
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -162,15 +162,17 @@ void colorcube(void)
 {
 
 	/* map vertices to faces */
-	glBindTexture(GL_TEXTURE_2D, texture1);
+	glBindTexture(GL_TEXTURE_2D, texture4);
 	polygon(1, 0, 3, 2, 0);
 	glBindTexture(GL_TEXTURE_2D, texture3);
 	polygon(3, 7, 6, 2, 1);
-	glBindTexture(GL_TEXTURE_2D, texture3);
+	glBindTexture(GL_TEXTURE_2D, texture2);
+	glBindTexture(GL_TEXTURE_2D, texture4);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	polygon(7, 3, 0, 4, 2);
 	glBindTexture(GL_TEXTURE_2D, texture2);
 	polygon(2, 6, 5, 1, 3);
-	glBindTexture(GL_TEXTURE_2D, texture1);
+	glBindTexture(GL_TEXTURE_2D, texture4);
 	polygon(4, 5, 6, 7, 4);
 	glBindTexture(GL_TEXTURE_2D, texture2);
 	polygon(5, 4, 0, 1, 5);
