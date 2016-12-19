@@ -42,8 +42,8 @@ GLfloat axis[3] = { 0.0, 0.0, 0.1 };
 int curx, cury;
 int startX, startY;
 bool line_ball = false;
-
-
+bool alpha_test = true;
+char* alpha_string = "Enable or Disable Alpha";
 GLfloat vertices[][3] = {
 	{ -1.0, -1.0, -1.0 }, { 1.0, -1.0, -1.0 }, { 1.0, 1.0, -1.0 }, { -1.0, 1.0, -1.0 },
 	{ -1.0, -1.0, 1.0 }, { 1.0, -1.0, 1.0 }, { 1.0, 1.0, 1.0 }, { -1.0, 1.0, 1.0 }
@@ -78,23 +78,28 @@ int main(int argc, char **argv)
 {
 	n=5;
 	glutInit(&argc, argv);
+	std::cout<<"*********************计图第五次作业****************************"<<std::endl;
+	std::cout<<"*       键盘输入0-7可以查看三面体递归生成球体过程             *"<<std::endl;
+	std::cout<<"*            鼠标每次点击画面会改变光源颜色                   *"<<std::endl;
+	std::cout<<"*菜单选择*\n*1:平行投影*\n*2:透视投影*\n*3:打开或关闭中心的线框球*\n*4:打开或关闭Alpha通道(透明通道)*"<<std::endl;
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(winWidth, winHeight);
 	glutCreateWindow("HW5");
+	glutInitWindowPosition(500, 500);
 	glutReshapeFunc(myReshape);
 	glutDisplayFunc(display);
 	glutIdleFunc(myidle);
 	glutMouseFunc(myMouse);
 	glutMotionFunc(mouseMotion);
 	myinit();
-	texture1=generateTexture("texture.png");
-	texture2=generateTexture("wall.jpg");
-	texture3=generateTexture("xuzifan.jpg");
-	texture4=generateTexture("texture_a.png");
+	texture1=generateTexture("texture_a.png");
+	texture2=generateTexture("wall.png");
+	texture3=generateTexture("xuzifan.png");
 	glutCreateMenu(Draw_menu);//菜单回调函数
 	glutAddMenuEntry("Orthographic", 1);
 	glutAddMenuEntry("Perspective", 2);
-	glutAddMenuEntry("line_ball",3);
+	glutAddMenuEntry("Enable or Disable Line_ball",3);
+	glutAddMenuEntry(alpha_string, 4);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 	glutKeyboardFunc(key_callback);
 	glEnable(GL_DEPTH_TEST);
@@ -115,18 +120,15 @@ GLuint generateTexture(const char* texture_name)
 	unsigned char  *image = SOIL_load_image(texture_name,&texWidth, &texHeight, 0, SOIL_LOAD_RGBA);
 	if(image== NULL)
 		std::cout<<"Failed to load Image:"<<texture_name<<std::endl;
-    
+
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
+	//glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
 	gluBuild2DMipmaps(GL_TEXTURE_2D, 4, texWidth, texHeight, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	glEnable(GL_TEXTURE_2D);
-	glEnable(GL_BLEND);
-	glEnable(GL_ALPHA_TEST);
-	glAlphaFunc(GL_GREATER, 0);
 	//glGenerateMipmap(GL_TEXTURE_2D);
 	SOIL_free_image_data(image);
 	glBindTexture(GL_TEXTURE_2D, 0);
@@ -137,9 +139,8 @@ void polygon(int a, int b, int c, int d, int face)
 {
 
 	/* draw a polygon via list of vertices */
-	
+
 	glBegin(GL_POLYGON);
-	//glActiveTexture(GL_TEXTURE0);
 	glTexCoord2f(0.0f, 1.0f);
 	glColor3fv(colors[a]);
 	glVertex3fv(vertices[a]);
@@ -162,17 +163,16 @@ void colorcube(void)
 {
 
 	/* map vertices to faces */
-	glBindTexture(GL_TEXTURE_2D, texture4);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBindTexture(GL_TEXTURE_2D, texture1);
 	polygon(1, 0, 3, 2, 0);
 	glBindTexture(GL_TEXTURE_2D, texture3);
-	polygon(3, 7, 6, 2, 1);
+	polygon(3, 7, 6, 2, 1);	
 	glBindTexture(GL_TEXTURE_2D, texture2);
-	glBindTexture(GL_TEXTURE_2D, texture4);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	polygon(7, 3, 0, 4, 2);
 	glBindTexture(GL_TEXTURE_2D, texture2);
 	polygon(2, 6, 5, 1, 3);
-	glBindTexture(GL_TEXTURE_2D, texture4);
+	glBindTexture(GL_TEXTURE_2D, texture1);
 	polygon(4, 5, 6, 7, 4);
 	glBindTexture(GL_TEXTURE_2D, texture2);
 	polygon(5, 4, 0, 1, 5);
@@ -277,7 +277,16 @@ void display()
 	/*多个旋转组合，理论上左乘顺序，而CTM实现是右乘属性。
 	这里用栈操作实现不了顺序，只能靠自己编程设置矩阵保存上次旋转后的组合矩阵，再CTM右乘它
 	公式为：CTM(i)=I*R(i)*M(i-1); M(i)=CTM(i）;初始：CTM(0)=I, M(0)=I*/
-
+	if(alpha_test==true){
+		glEnable(GL_BLEND);
+		glEnable(GL_ALPHA_TEST);
+		glAlphaFunc(GL_GREATER, 0);
+		
+	}
+	else if(alpha_test==false){
+		glDisable(GL_BLEND);
+		glDisable(GL_ALPHA_TEST);
+	}
 
 	glLoadIdentity();
 	glRotatef(angle, axis[0], axis[1], axis[2]);
@@ -398,6 +407,19 @@ void Draw_menu(int index)
 			display();
 			break;
 		}
+	case(4):
+		{
+			if(alpha_test == false){
+				alpha_test = true;
+				alpha_string="Disable_alpha";
+			}
+			else{
+				alpha_test = false;
+				alpha_string="Enable_alpha";
+			}
+			display();
+			break;
+		}
 	}
 }
 
@@ -415,7 +437,7 @@ void triangle(point a, point b, point c)
 {
 	/* display one triangle using a line loop for wire frame, a single
 	normal for constant shading, or three normals for interpolative shading */
-    glBindTexture(GL_TEXTURE_2D, texture2);
+	glBindTexture(GL_TEXTURE_2D, texture2);
 	if (mode == 0) glBegin(GL_LINE_LOOP);	else glBegin(GL_POLYGON);
 
 	if (mode == 1) glNormal3fv(a);
@@ -506,7 +528,7 @@ void key_callback(unsigned char key, int x, int y){
 	if(number < 48 || number > 55){
 	}
 	else{
-		std::cout<<number-48<<std::endl;
+		//std::cout<<number-48<<std::endl;
 		n = number-48;
 		display();
 	}
