@@ -18,6 +18,9 @@ typedef float point[4];
 
 point v[] = { { 0.0, 0.0, 1.0 }, { 0.0, 0.942809, -0.33333 },
 { -0.816497, -0.471405, -0.333333 }, { 0.816497, -0.471405, -0.333333 } };
+
+point v2[] =  {{ 0.0, 0.0, 4 }, { 0.0, 5.4, -1.8 },
+{ -4.8, -2.5, -1.8 }, { 4.8, -2.5, -1.8 } };
 float  CompositeTransMatrix[4][4]= {{ 1.0, 0.0, 0.0, 0.0 }, { 0.0, 1.0, 0.0, 0.0 }, { 0.0, 0.0, 1.0, 0.0 }, { 0.0, 0.0, 0.0, 1.0 } };
 float *p_CompositeTransMatrix = *CompositeTransMatrix;
 GLuint texture1, texture2, texture3, texture4;
@@ -28,8 +31,8 @@ GLfloat color = 0.0;
 /****************/
 int mode;
 int n;
-int Near = 1.9;
-int Far = 8;
+int Near = 1.6;
+int Far = 16;
 int Zeye=5;
 int projectStyle = 1;//1：平行正投影，2：透视
 /***************************/
@@ -71,8 +74,12 @@ void triangle(point a, point b, point c);
 void normal(point p);
 void divide_triangle(point a, point b, point c, int m);
 void tetrahedron(int m);
+void tetrahedron2(int m);
 void key_callback(unsigned char key, int x, int y);
 void myinit();
+void drawCircle();
+void divide_triangle2(point a, point b, point c, int m);
+void triangle2(point a, point b, point c);
 GLuint generateTexture(const char* texture_name);
 int main(int argc, char **argv)
 {
@@ -95,10 +102,12 @@ int main(int argc, char **argv)
 	texture1=generateTexture("texture_a.png");
 	texture2=generateTexture("wall.png");
 	texture3=generateTexture("xuzifan.png");
+	texture4=generateTexture("102.jpg");
 	glutCreateMenu(Draw_menu);//菜单回调函数
 	glutAddMenuEntry("Orthographic", 1);
 	glutAddMenuEntry("Perspective", 2);
 	glutAddMenuEntry("Enable or Disable Line_ball",3);
+	glutAddMenuEntry("Change Background",5);
 	glutAddMenuEntry(alpha_string, 4);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 	glutKeyboardFunc(key_callback);
@@ -258,16 +267,27 @@ void tetrahedron(int m)
 	divide_triangle(v[0], v[3], v[1], m);
 	divide_triangle(v[0], v[2], v[3], m);
 }
+void tetrahedron2(int m)
+{
+
+	/* Apply triangle subdivision to faces of tetrahedron */
+	divide_triangle2(v2[0], v2[1], v2[2], m);
+	divide_triangle2(v2[3], v2[2], v2[1], m);
+	divide_triangle2(v2[0], v2[3], v2[1], m);
+	divide_triangle2(v2[0], v2[2], v2[3], m);
+}
 /*******************************************************************************************************************
 主要修改部分：连续转动需要累积起组合变换矩阵，按顺序是左乘，但是写程序要按右乘来写
 ********************************************************************************************************************/
-
-
+//void drawCircle(){
+//	glBegin(GL_QUADS);
+//}
 void display()
 {
 	/*这条语句必须放在这里，以便每次绘制之前都需要清理颜色和深度缓存*/
+	glClearColor(1.0, 1.0, 1.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//glBindTexture(GL_TEXTURE_2D, texture);
+	
 	glMatrixMode(GL_MODELVIEW);	
 
 	glLoadIdentity();
@@ -296,12 +316,15 @@ void display()
 	glLoadMatrixf(p_Mlookup);
 	glMultMatrixf(p_CompositeTransMatrix);
 	mode = 0;
+	
+
 	if(line_ball) tetrahedron(n);
 	mode = 1;
+	tetrahedron2(2);
 	glTranslatef(-2.0, 0.0, 0.0);
 	tetrahedron(n);
 	mode = 2;
-	glTranslatef(4.0, 0.0, 0.0);
+	glTranslatef(4, 0.0, 0.0);
 	colorcube();
 
 	/*注意这里采用的是立即显示，没有用动画模式，为得是让转动速度减慢
@@ -453,6 +476,26 @@ void triangle(point a, point b, point c)
 	glVertex3fv(c);
 	glEnd();
 }
+void triangle2(point a, point b, point c)
+{
+	/* display one triangle using a line loop for wire frame, a single
+	normal for constant shading, or three normals for interpolative shading */
+	glBindTexture(GL_TEXTURE_2D, texture4);
+	if (mode == 0) glBegin(GL_LINE_LOOP);	else glBegin(GL_POLYGON);
+
+	if (mode == 1) glNormal3fv(a);
+
+	if (mode == 2) glNormal3fv(a);
+	glTexCoord2fv(a);
+	glVertex3fv(a);
+	if (mode == 2) glNormal3fv(b);
+	glTexCoord2fv(b);
+	glVertex3fv(b);
+	if (mode == 2) glNormal3fv(c);
+	glTexCoord2fv(c);
+	glVertex3fv(c);
+	glEnd();
+}
 
 void normal(point p)
 {
@@ -490,7 +533,29 @@ void divide_triangle(point a, point b, point c, int m)
 	}
 	else(triangle(a, b, c)); /* draw triangle at end of recursion */
 }
+void divide_triangle2(point a, point b, point c, int m)
+{
 
+	/* triangle subdivision using vertex numbers
+	righthand rule applied to create outward pointing faces */
+
+	point v1, v2, v3;
+	int j;
+	if (m>0)
+	{
+		for (j = 0; j<3; j++) v1[j] = a[j] + b[j];
+		//normal(v1);
+		for (j = 0; j<3; j++) v2[j] = a[j] + c[j];
+		//normal(v2);
+		for (j = 0; j<3; j++) v3[j] = b[j] + c[j];
+		//normal(v3);
+		divide_triangle2(a, v1, v2, m - 1);
+		divide_triangle2(c, v2, v3, m - 1);
+		divide_triangle2(b, v3, v1, m - 1);
+		divide_triangle2(v1, v3, v2, m - 1);
+	}
+	else(triangle2(a, b, c)); /* draw triangle at end of recursion */
+}
 void myinit()
 {
 	GLfloat mat_specular[] = { colorR, colorG, colorB, 1.0 };
@@ -500,7 +565,7 @@ void myinit()
 	GLfloat light_ambient[] = { 1, 0.2, 0.2, 1.0 };
 	GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
 	GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-	GLfloat light_position[] = {0.0, 0.0, 0.0, 1.0};
+	GLfloat light_position[] = {1.0, 1.0, 0.0, 0.0};
 	/* set up ambient, diffuse, and specular components for light 0 */
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
