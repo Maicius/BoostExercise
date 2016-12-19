@@ -23,7 +23,7 @@ point v2[] =  {{ 0.0, 0.0, 4 }, { 0.0, 5.4, -1.8 },
 { -4.8, -2.5, -1.8 }, { 4.8, -2.5, -1.8 } };
 float  CompositeTransMatrix[4][4]= {{ 1.0, 0.0, 0.0, 0.0 }, { 0.0, 1.0, 0.0, 0.0 }, { 0.0, 0.0, 1.0, 0.0 }, { 0.0, 0.0, 0.0, 1.0 } };
 float *p_CompositeTransMatrix = *CompositeTransMatrix;
-GLuint texture1, texture2, texture3, texture4;
+GLuint texture1, texture2, texture3, texture4,texture5;
 float Mlookup[4][4]= {{ 1.0, 0.0, 0.0, 0.0 }, { 0.0, 1.0, 0.0, 0.0 }, { 0.0, 0.0, 1.0, 0.0 }, { 0.0, 0.0, 0.0, 1.0 } };;
 float *p_Mlookup = *Mlookup;
 GLfloat colorR=1.0, colorG=0.0, colorB=0.0;
@@ -31,8 +31,8 @@ GLfloat color = 0.0;
 /****************/
 int mode;
 int n;
-int Near = 1.6;
-int Far = 16;
+int Near = 1.9;
+int Far = 17;
 int Zeye=5;
 int projectStyle = 1;//1：平行正投影，2：透视
 /***************************/
@@ -46,10 +46,17 @@ int curx, cury;
 int startX, startY;
 bool line_ball = false;
 bool alpha_test = true;
+bool show_background = false;
+bool change_background = false;
 char* alpha_string = "Enable or Disable Alpha";
 GLfloat vertices[][3] = {
 	{ -1.0, -1.0, -1.0 }, { 1.0, -1.0, -1.0 }, { 1.0, 1.0, -1.0 }, { -1.0, 1.0, -1.0 },
 	{ -1.0, -1.0, 1.0 }, { 1.0, -1.0, 1.0 }, { 1.0, 1.0, 1.0 }, { -1.0, 1.0, 1.0 }
+};
+int size = 7;
+GLfloat verticesBig[][3] = {
+	{ -size, -size, -size }, { size, -size, -size }, { size, size, -size }, { -size, size, -size },
+	{ -size, -size, size }, { size, -size, size }, { size, size, size }, { -size, size, size }
 };
 
 GLfloat colors[][3] = {
@@ -57,7 +64,9 @@ GLfloat colors[][3] = {
 	{ 0.0, 0.0, 1.0 }, { 1.0, 0.0, 1.0 }, { 1.0, 1.0, 1.0 }, { 0.0, 1.0, 1.0 }
 };
 void polygon(int a, int b, int c, int d, int face);
+void polygonBig(int a, int b, int c, int d, int face);
 void colorcube(void);
+void colorcubeBig(void);
 void trackball_ptov(int x, int y, int width, int height, float v[3]);
 void mouseMotion(int x, int y);
 void startMotion(int x, int y);
@@ -77,7 +86,6 @@ void tetrahedron(int m);
 void tetrahedron2(int m);
 void key_callback(unsigned char key, int x, int y);
 void myinit();
-void drawCircle();
 void divide_triangle2(point a, point b, point c, int m);
 void triangle2(point a, point b, point c);
 GLuint generateTexture(const char* texture_name);
@@ -103,12 +111,14 @@ int main(int argc, char **argv)
 	texture2=generateTexture("wall.png");
 	texture3=generateTexture("xuzifan.png");
 	texture4=generateTexture("102.jpg");
+	texture5=generateTexture("xiaoqingx.jpg");
 	glutCreateMenu(Draw_menu);//菜单回调函数
 	glutAddMenuEntry("Orthographic", 1);
 	glutAddMenuEntry("Perspective", 2);
-	glutAddMenuEntry("Enable or Disable Line_ball",3);
-	glutAddMenuEntry("Change Background",5);
+	glutAddMenuEntry("Enable or Disable Line_ball",3);	
 	glutAddMenuEntry(alpha_string, 4);
+	glutAddMenuEntry("Show or Hide Background",5);
+	glutAddMenuEntry("Change background",6);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 	glutKeyboardFunc(key_callback);
 	glEnable(GL_DEPTH_TEST);
@@ -167,6 +177,29 @@ void polygon(int a, int b, int c, int d, int face)
 	glVertex3fv(vertices[d]);
 	glEnd();
 }
+void polygonBig(int a, int b, int c, int d, int face)
+{
+
+	/* draw a polygon via list of vertices */
+
+	glBegin(GL_POLYGON);
+	glTexCoord2f(0.0f, 1.0f);
+	glColor3fv(colors[a]);
+	glVertex3fv(verticesBig[a]);
+
+	glTexCoord2f(1.0f, 1.0f);
+	glColor3fv(colors[b]);
+	glVertex3fv(verticesBig[b]);
+
+	glTexCoord2f(1.0f, 0.0f);
+	glColor3fv(colors[c]);
+	glVertex3fv(verticesBig[c]);
+
+	glTexCoord2f(0.0f, 0.0f);
+	glColor3fv(colors[d]);
+	glVertex3fv(verticesBig[d]);
+	glEnd();
+}
 
 void colorcube(void)
 {
@@ -185,6 +218,19 @@ void colorcube(void)
 	polygon(4, 5, 6, 7, 4);
 	glBindTexture(GL_TEXTURE_2D, texture2);
 	polygon(5, 4, 0, 1, 5);
+}
+void colorcubeBig(void)
+{
+
+	/* map vertices to faces */
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBindTexture(GL_TEXTURE_2D, texture5);
+	polygonBig(1, 0, 3, 2, 0);
+	polygonBig(3, 7, 6, 2, 1);	
+	polygonBig(7, 3, 0, 4, 2);
+	polygonBig(2, 6, 5, 1, 3);
+	polygonBig(4, 5, 6, 7, 4);
+	polygonBig(5, 4, 0, 1, 5);
 }
 
 /*----------------------------------------------------------------------*/
@@ -316,11 +362,14 @@ void display()
 	glLoadMatrixf(p_Mlookup);
 	glMultMatrixf(p_CompositeTransMatrix);
 	mode = 0;
-	
-
 	if(line_ball) tetrahedron(n);
 	mode = 1;
-	tetrahedron2(2);
+	if(show_background){
+		if(change_background) 
+			colorcubeBig();
+		else
+		    tetrahedron2(2);
+	}
 	glTranslatef(-2.0, 0.0, 0.0);
 	tetrahedron(n);
 	mode = 2;
@@ -423,7 +472,7 @@ void Draw_menu(int index)
 		}
 	case(3):
 		{
-			if(line_ball == false)
+			if(!line_ball)
 				line_ball = true;
 			else
 				line_ball =false;
@@ -440,6 +489,20 @@ void Draw_menu(int index)
 				alpha_test = false;
 				alpha_string="Enable_alpha";
 			}
+			display();
+			break;
+		}
+	case(5):
+		{
+			if(show_background) show_background=false;
+			else show_background=true;
+			display();
+			break;
+		}
+	case(6):
+		{
+			if(change_background) change_background=false;
+			else change_background=true;
 			display();
 			break;
 		}
