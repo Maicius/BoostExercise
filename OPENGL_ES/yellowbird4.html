@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute  vec4 vPosition;
+attribute  vec4 vColor;
+varying vec4 fColor;
+//new
+uniform mat4 modelView;
+uniform mat4 projection;
+
+
+
+//光照参数
+attribute  vec3 vNormal;//法向量
+uniform vec4 ambientProduct, diffuseProduct, specularProduct;
+uniform vec4 lightPosition;//光源位置
+uniform float shininess;
+uniform mat3 normalMatrix;//用来变换法向量的矩阵
+
+
+void main()
+{
+   
+    gl_Position = projection*modelView*vPosition;
+    fColor = vColor;
+
+     //gl_Position =zoom*rotx*roty*vPosition;
+    vec3 pos = -(modelView* vPosition).xyz;
+    
+    //fixed light postion
+    vec3 light = lightPosition.xyz;
+    vec3 L = normalize( light - pos );//归一化
+    vec3 E = normalize( -pos );
+    vec3 H = normalize( L + E );
+    vec4 NN = vec4(vNormal,0);
+
+    // Transform vertex normal into eye coordinates
+       
+    vec3 N = normalize( (modelView*NN).xyz);
+
+    // Compute terms in the illumination equation
+    vec4 ambient = ambientProduct;
+
+    float Kd = max( dot(L, N), 0.0 );
+    vec4  diffuse = Kd*diffuseProduct;
+
+    float Ks = pow( max(dot(N, H), 0.0), shininess );
+    vec4  specular = Ks * specularProduct;
+    
+    if( dot(L, N) < 0.0 ) {
+    specular = vec4(1.0, 0.0, 0.0, 1.0);
+    } 
+//gl_Position =zoom*rotx*roty*vPosition;
+   // gl_Position =projectionMatrix*modelViewMatrix*zoom*rz * ry * rx*trans*rotx*roty*vPosition;
+  //  gl_Position = projectionMatrixMatrix * modelViewMatrixMatrix * vPosition;
+    fColor = vColor+ambient + diffuse +specular;
+    
+    fColor.a = 1.0;
+//gl_Position.z = -gl_Position.z;
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+varying vec4 fColor;
+
+void
+main()
+{
+    gl_FragColor = fColor;
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="yellowbird4.js"></script>
+<script type="text/javascript" src="../Common/GameObject.js"></script>
+<script type="text/javascript" src="../Common/Window.js"></script>
+<script type="text/javascript" src="../Common/ObjectManager.js"></script>
+<script type="text/javascript" src="../Common/Matrix.js"></script>
+<body>
+<canvas id="gl-canvas" width="512"" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+
+<br/>
+
+<button id= "xButton">Rotate X</button>
+<button id= "yButton">Rotate Y</button>
+<button id= "zButton">Rotate Z</button>
+<!--NEW--->
+<button id= "lButton">Transleft</button>
+<button id= "rButton">Transright</button>
+<button id= "zoomButton">Zoom</button>
+<button id= "stopButton">Stop</button>
+<br/>
+<!---END--->
+<button id = "Button1">Increase Z</button>
+<button id = "Button2">Decrease Z</button>
+<button id = "Button3">Increase R</button>
+<button id = "Button4">Decrease R</button>
+<button id = "Button5">Increase theta</button>
+<button id = "Button6">Decrease theta</button>
+<button id = "Button7">Increase phi</button>
+<button id = "Button8">Decrease phi</button>
+<button id = "Button9">ortho</button>
+<button id = "Button10">perspective</button>
+
+<button id = "ButtonX">Rotate X</button>
+<button id = "ButtonY">Rotate Y</button>
+<button id = "ButtonZ">Rotate Z</button>
+<button id = "ButtonT">Toggle Rotation</button>
+
+<input id="slider8" type="range"
+ min="0" max="20" step = "1" value = "1"> mertiral change</input>
+ <br>
+ <input id="slider9" type="range"
+ min="0" max="20" step = "1" value = "0">indensity change</input>
+ <br>
+ <input id="slider10" type="range"
+ min="0" max="20" step = "1" value = "1"> light position</input>
+</body>
+</html>
