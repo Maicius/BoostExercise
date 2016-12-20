@@ -48,6 +48,7 @@ bool line_ball = false;
 bool alpha_test = true;
 bool show_background = false;
 bool change_background = false;
+GLfloat view_size=2.0;
 char* alpha_string = "Enable or Disable Alpha";
 GLfloat vertices[][3] = {
 	{ -1.0, -1.0, -1.0 }, { 1.0, -1.0, -1.0 }, { 1.0, 1.0, -1.0 }, { -1.0, 1.0, -1.0 },
@@ -71,7 +72,6 @@ void trackball_ptov(int x, int y, int width, int height, float v[3]);
 void mouseMotion(int x, int y);
 void startMotion(int x, int y);
 void stopMotion(int x, int y);
-void tetrahedron(int m);
 void display();
 void myidle();
 void myMouse(int Botton, int State, int MouseX, int MouseY);
@@ -107,7 +107,7 @@ int main(int argc, char **argv)
 	glutMouseFunc(myMouse);
 	glutMotionFunc(mouseMotion);
 	myinit();
-	texture1=generateTexture("texture_a.png");
+	texture1=generateTexture("gundam.png");
 	texture2=generateTexture("wall.png");
 	texture3=generateTexture("xuzifan.png");
 	texture4=generateTexture("102.jpg");
@@ -384,6 +384,7 @@ void display()
 void myidle()
 {
 	myinit();
+	myReshape(winWidth, winHeight);
 	if (redrawContinue == true)
 	{
 		//让自动动画转得慢一点，加了这句，固定速度自转，不根据交互鼠标拖动的速度继续平滑转动。
@@ -411,7 +412,6 @@ void myMouse(int Botton, int State, int MouseX, int MouseY)
 			break;
 		}
 	}
-
 }
 
 void Perspective(int w, int h)
@@ -420,11 +420,11 @@ void Perspective(int w, int h)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	if (w <= h)
-		glFrustum(-2.0, 2.0, -2.0 * (GLfloat)h / (GLfloat)w,
-		2.0 * (GLfloat)h / (GLfloat)w, Near, Far);
+		glFrustum(-view_size, view_size, -view_size * (GLfloat)h / (GLfloat)w,
+		view_size * (GLfloat)h / (GLfloat)w, Near, Far);
 	else
-		glFrustum(-2.0 * (GLfloat)w / (GLfloat)h,
-		2.0 * (GLfloat)w / (GLfloat)h, -2.0, 2.0, Near, Far);
+		glFrustum(-view_size * (GLfloat)w / (GLfloat)h,
+		view_size * (GLfloat)w / (GLfloat)h, -view_size, view_size, Near, Far);
 	//glMatrixMode(GL_MODELVIEW);
 	glutPostRedisplay();
 
@@ -439,11 +439,11 @@ void Orthographic(int w, int h)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	if (w <= h)
-		glOrtho(-2.0, 2.0, -2.0 * (GLfloat)h / (GLfloat)w,
-		2.0 * (GLfloat)h / (GLfloat)w, Near, Far);
+		glOrtho(-view_size, view_size, -view_size * (GLfloat)h / (GLfloat)w,
+		view_size * (GLfloat)h / (GLfloat)w, Near, Far);
 	else
-		glOrtho(-2.0 * (GLfloat)w / (GLfloat)h,
-		2.0 * (GLfloat)w / (GLfloat)h, -2.0, 2.0, Near,Far);
+		glOrtho(-view_size * (GLfloat)w / (GLfloat)h,
+		view_size * (GLfloat)w / (GLfloat)h, -view_size, view_size, Near,Far);
 	glMatrixMode(GL_MODELVIEW);
 	glutPostRedisplay();
 
@@ -501,7 +501,10 @@ void Draw_menu(int index)
 		}
 	case(6):
 		{
-			if(change_background) change_background=false;
+			if(change_background){ 
+				change_background=false;
+				show_background=true;
+			}
 			else change_background=true;
 			display();
 			break;

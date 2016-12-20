@@ -1,16 +1,17 @@
-﻿生成启动时间为 2016/10/31 22:46:18。
-     1>项目“C:\Users\Maicius\documents\visual studio 2012\Projects\openGL_test\CGHomework2\CGHomework2.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2016/12/20 13:51:15。
+     1>项目“I:\BOOSTExercise\openGL_test\CGHomework2\CGHomework2.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         E:\VisualStudio2012\VC\bin\CL.exe /c /I"E:\AA实验室\SDK\OpenGL\include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "直线算法.cpp"
+         E:\VisualStudio2012\VC\bin\CL.exe /c /I"E:\AA实验室\SDK\OpenGL\include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt drawCircle.cpp "直线算法.cpp"
          直线算法.cpp
-     1>c:\users\maicius\documents\visual studio 2012\projects\opengl_test\cghomework2\直线算法.cpp(10): warning C4305: “初始化”: 从“double”到“const float”截断
-     1>c:\users\maicius\documents\visual studio 2012\projects\opengl_test\cghomework2\直线算法.cpp(27): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+         drawCircle.cpp
+         正在生成代码...
        Link:
-         E:\VisualStudio2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Maicius\documents\visual studio 2012\Projects\openGL_test\Debug\CGHomework2.exe" /INCREMENTAL /NOLOGO /LIBPATH:"E:\AA实验室\SDK\OpenGL\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Maicius\documents\visual studio 2012\Projects\openGL_test\Debug\CGHomework2.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Maicius\documents\visual studio 2012\Projects\openGL_test\Debug\CGHomework2.lib" /MACHINE:X86 Debug\drawCircle.obj
+         E:\VisualStudio2012\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"I:\BOOSTExercise\openGL_test\Debug\CGHomework2.exe" /INCREMENTAL /NOLOGO /LIBPATH:"E:\AA实验室\SDK\OpenGL\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"I:\BOOSTExercise\openGL_test\Debug\CGHomework2.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"I:\BOOSTExercise\openGL_test\Debug\CGHomework2.lib" /MACHINE:X86 Debug\drawCircle.obj
          "Debug\直线算法.obj"
-         CGHomework2.vcxproj -> C:\Users\Maicius\documents\visual studio 2012\Projects\openGL_test\Debug\CGHomework2.exe
-     1>已完成生成项目“C:\Users\Maicius\documents\visual studio 2012\Projects\openGL_test\CGHomework2\CGHomework2.vcxproj”(Build 个目标)的操作。
+         LINK : 没有找到 I:\BOOSTExercise\openGL_test\Debug\CGHomework2.exe 或上一个增量链接没有生成它；正在执行完全链接
+         CGHomework2.vcxproj -> I:\BOOSTExercise\openGL_test\Debug\CGHomework2.exe
+     1>已完成生成项目“I:\BOOSTExercise\openGL_test\CGHomework2\CGHomework2.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:01.32
+已用时间 00:00:05.67
