@@ -19,7 +19,10 @@ typedef float point[4];
 point v[] = { { 0.0, 0.0, 1.0 }, { 0.0, 0.942809, -0.33333 },
 { -0.816497, -0.471405, -0.333333 }, { 0.816497, -0.471405, -0.333333 } };
 
-point v2[] =  {{ 0.0, 0.0, 4 }, { 0.0, 5.4, -1.8 },
+//point v2[] =  {{ 0.0, 0.0, 4 }, { 0.0, 5.4, -1.8 },
+//{ -4.8, -2.5, -1.8 }, { 4.8, -2.5, -1.8 } };
+
+point v2[] =  {{ 0.0, 0.0, 6 }, { 0.0, 5.4, -1.8 },
 { -4.8, -2.5, -1.8 }, { 4.8, -2.5, -1.8 } };
 float  CompositeTransMatrix[4][4]= {{ 1.0, 0.0, 0.0, 0.0 }, { 0.0, 1.0, 0.0, 0.0 }, { 0.0, 0.0, 1.0, 0.0 }, { 0.0, 0.0, 0.0, 1.0 } };
 float *p_CompositeTransMatrix = *CompositeTransMatrix;
@@ -32,7 +35,7 @@ GLfloat color = 0.0;
 int mode;
 int n;
 int Near = 1.9;
-int Far = 17;
+int Far = 100;
 int Zeye=5;
 int projectStyle = 1;//1：平行正投影，2：透视
 /***************************/
@@ -54,7 +57,7 @@ GLfloat vertices[][3] = {
 	{ -1.0, -1.0, -1.0 }, { 1.0, -1.0, -1.0 }, { 1.0, 1.0, -1.0 }, { -1.0, 1.0, -1.0 },
 	{ -1.0, -1.0, 1.0 }, { 1.0, -1.0, 1.0 }, { 1.0, 1.0, 1.0 }, { -1.0, 1.0, 1.0 }
 };
-int size = 7;
+int size = 50;
 GLfloat verticesBig[][3] = {
 	{ -size, -size, -size }, { size, -size, -size }, { size, size, -size }, { -size, size, -size },
 	{ -size, -size, size }, { size, -size, size }, { size, size, size }, { -size, size, size }
@@ -96,7 +99,9 @@ int main(int argc, char **argv)
 	std::cout<<"*********************计图第五次作业****************************"<<std::endl;
 	std::cout<<"*       键盘输入0-7可以查看三面体递归生成球体过程             *"<<std::endl;
 	std::cout<<"*            鼠标每次点击画面会改变光源颜色                   *"<<std::endl;
-	std::cout<<"*菜单选择*\n*1:平行投影*\n*2:透视投影*\n*3:打开或关闭中心的线框球*\n*4:打开或关闭Alpha通道(透明通道)*"<<std::endl;
+	std::cout<<"*            键盘输入'-'或'+'可以改变视角的远近               *"<<std::endl;
+	std::cout<<"*            键盘输入'-'或'+'可以改变视角的远近               *"<<std::endl;
+	std::cout<<"*菜单选择*\n*1:平行投影*\n*2:透视投影*\n*3:打开或关闭中心的线框球*\n*4:打开或关闭Alpha通道(透明通道)*\n*启用Skybox*\n*改变Skybox主题"<<std::endl;
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(winWidth, winHeight);
 	glutCreateWindow("HW5");
@@ -110,15 +115,15 @@ int main(int argc, char **argv)
 	texture1=generateTexture("gundam.png");
 	texture2=generateTexture("wall.png");
 	texture3=generateTexture("xuzifan.png");
-	texture4=generateTexture("102.jpg");
-	texture5=generateTexture("xiaoqingx.jpg");
+	texture4=generateTexture("xiaoqingx.jpg");
+	texture5=generateTexture("sky.png");
 	glutCreateMenu(Draw_menu);//菜单回调函数
 	glutAddMenuEntry("Orthographic", 1);
 	glutAddMenuEntry("Perspective", 2);
 	glutAddMenuEntry("Enable or Disable Line_ball",3);	
 	glutAddMenuEntry(alpha_string, 4);
-	glutAddMenuEntry("Show or Hide Background",5);
-	glutAddMenuEntry("Change background",6);
+	glutAddMenuEntry("Show or Hide Skybox",5);
+	glutAddMenuEntry("Change Skybox",6);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 	glutKeyboardFunc(key_callback);
 	glEnable(GL_DEPTH_TEST);
@@ -134,7 +139,6 @@ GLuint generateTexture(const char* texture_name)
 	glEnable(GL_TEXTURE_2D);
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
-
 	int texWidth, texHeight;
 	unsigned char  *image = SOIL_load_image(texture_name,&texWidth, &texHeight, 0, SOIL_LOAD_RGBA);
 	if(image== NULL)
@@ -368,7 +372,7 @@ void display()
 		if(change_background) 
 			colorcubeBig();
 		else
-		    tetrahedron2(2);
+		    tetrahedron2(3);
 	}
 	glTranslatef(-2.0, 0.0, 0.0);
 	tetrahedron(n);
@@ -662,5 +666,14 @@ void key_callback(unsigned char key, int x, int y){
 		//std::cout<<number-48<<std::endl;
 		n = number-48;
 		display();
+	}
+
+	if(number==43){
+		view_size -=0.1;
+		//std::cout<<"view_size:"<<view_size<<std::endl;
+	}
+	else if(number == 45){
+		view_size +=0.1;
+		//std::cout<<"view_size:"<<view_size<<std::endl;
 	}
 }
