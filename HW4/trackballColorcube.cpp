@@ -115,7 +115,7 @@ int main(int argc, char **argv)
 	texture1=generateTexture("gundam.png");
 	texture2=generateTexture("wall.png");
 	texture3=generateTexture("xuzifan.png");
-	texture4=generateTexture("xiaoqingx.jpg");
+	texture4=generateTexture("102.jpg");
 	texture5=generateTexture("sky.png");
 	glutCreateMenu(Draw_menu);//菜单回调函数
 	glutAddMenuEntry("Orthographic", 1);
@@ -150,7 +150,7 @@ GLuint generateTexture(const char* texture_name)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	//glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
-	gluBuild2DMipmaps(GL_TEXTURE_2D, 4, texWidth, texHeight, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	/gluBuild2DMipmaps(GL_TEXTURE_2D, 4, texWidth, texHeight, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	glEnable(GL_TEXTURE_2D);
 	//glGenerateMipmap(GL_TEXTURE_2D);
 	SOIL_free_image_data(image);
