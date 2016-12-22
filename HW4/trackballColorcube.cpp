@@ -101,7 +101,7 @@ int main(int argc, char **argv)
 	std::cout<<"*            鼠标每次点击画面会改变光源颜色                   *"<<std::endl;
 	std::cout<<"*            键盘输入'-'或'+'可以改变视角的远近               *"<<std::endl;
 	std::cout<<"*            键盘输入'-'或'+'可以改变视角的远近               *"<<std::endl;
-	std::cout<<"*菜单选择*\n*1:平行投影*\n*2:透视投影*\n*3:打开或关闭中心的线框球*\n*4:打开或关闭Alpha通道(透明通道)*\n*启用Skybox*\n*改变Skybox主题"<<std::endl;
+	std::cout<<"*菜单选择*\n*1:平行投影*\n*2:透视投影*\n*3:打开或关闭中心的线框球*\n*4:打开或关闭Alpha通道(透明通道)*\n*6启用Skybox*\n*6改变Skybox主题"<<std::endl;
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(winWidth, winHeight);
 	glutCreateWindow("HW5");
@@ -125,6 +125,7 @@ int main(int argc, char **argv)
 	glutAddMenuEntry("Show or Hide Skybox",5);
 	glutAddMenuEntry("Change Skybox",6);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
+
 	glutKeyboardFunc(key_callback);
 	glEnable(GL_DEPTH_TEST);
 	glShadeModel(GL_FLAT);
@@ -150,7 +151,7 @@ GLuint generateTexture(const char* texture_name)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	//glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_MODULATE);
-	/gluBuild2DMipmaps(GL_TEXTURE_2D, 4, texWidth, texHeight, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	gluBuild2DMipmaps(GL_TEXTURE_2D, 4, texWidth, texHeight, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	glEnable(GL_TEXTURE_2D);
 	//glGenerateMipmap(GL_TEXTURE_2D);
 	SOIL_free_image_data(image);
@@ -416,6 +417,14 @@ void myMouse(int Botton, int State, int MouseX, int MouseY)
 			break;
 		}
 	}
+	else if(Botton == GLUT_MIDDLE_BUTTON && State == GLUT_DOWN){
+		if(redrawContinue == true){
+		     redrawContinue == false;
+		     angle =0;
+		}else{
+			redrawContinue = true;
+		}
+	}
 }
 
 void Perspective(int w, int h)
@@ -665,7 +674,7 @@ void key_callback(unsigned char key, int x, int y){
 	else{
 		//std::cout<<number-48<<std::endl;
 		n = number-48;
-		display();
+		display(); 
 	}
 
 	if(number==43){
