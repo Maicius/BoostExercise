@@ -1,5 +1,4 @@
-// trackball.cpp : 定义控制台应用程序的入口点。
-//
+
 /* Rotating cube demo with trackball*/
 #include <math.h>
 #include <stdlib.h>
@@ -7,6 +6,7 @@
 #include <iostream>
 #include <SOIL.h>
 #include <string>
+#pragma comment(lib,"SOIL.lib") 
 #define M_PI 3.14159
 
 #define bool int
@@ -18,9 +18,6 @@ typedef float point[4];
 
 point v[] = { { 0.0, 0.0, 1.0 }, { 0.0, 0.942809, -0.33333 },
 { -0.816497, -0.471405, -0.333333 }, { 0.816497, -0.471405, -0.333333 } };
-
-//point v2[] =  {{ 0.0, 0.0, 4 }, { 0.0, 5.4, -1.8 },
-//{ -4.8, -2.5, -1.8 }, { 4.8, -2.5, -1.8 } };
 
 point v2[] =  {{ 0.0, 0.0, 6 }, { 0.0, 5.4, -1.8 },
 { -4.8, -2.5, -1.8 }, { 4.8, -2.5, -1.8 } };
@@ -67,30 +64,49 @@ GLfloat colors[][3] = {
 	{ 0.0, 0.0, 0.0 }, { 1.0, 0.0, 0.0 }, { 1.0, 1.0, 0.0 }, { 0.0, 1.0, 0.0 },
 	{ 0.0, 0.0, 1.0 }, { 1.0, 0.0, 1.0 }, { 1.0, 1.0, 1.0 }, { 0.0, 1.0, 1.0 }
 };
+//画立方体的四个面
 void polygon(int a, int b, int c, int d, int face);
-void polygonBig(int a, int b, int c, int d, int face);
 void colorcube(void);
+//画大的立方体,也就是skybox，形成背景
+void polygonBig(int a, int b, int c, int d, int face);
 void colorcubeBig(void);
+//tackball,跟踪球
 void trackball_ptov(int x, int y, int width, int height, float v[3]);
+//鼠标移动函数
 void mouseMotion(int x, int y);
+//调跟踪球函数，同时根据鼠标坐标调整光照颜色
 void startMotion(int x, int y);
 void stopMotion(int x, int y);
+//渲染函数！！！
 void display();
+//回调函数，即该函数在执行过程中会被不断调用
 void myidle();
+//鼠标操作函数
 void myMouse(int Botton, int State, int MouseX, int MouseY);
+//透视投影
 void Perspective(int w, int h);
+//立体投影
 void Orthographic(int w, int h);
+//菜单函数
 void Draw_menu(int index);
+//稳定图形形状，防止窗口改变时图形变形
 void myReshape(int w, int h);
+//根据不同模式调用立方体迭代函数
 void triangle(point a, point b, point c);
+//法线
 void normal(point p);
+//立方体迭代函数
 void divide_triangle(point a, point b, point c, int m);
 void tetrahedron(int m);
-void tetrahedron2(int m);
+//键盘监听回调函数
 void key_callback(unsigned char key, int x, int y);
+//光照初始化函数
 void myinit();
+//画第二种skybox
+void tetrahedron2(int m);
 void divide_triangle2(point a, point b, point c, int m);
 void triangle2(point a, point b, point c);
+//生成纹理（texture name为图片名字）
 GLuint generateTexture(const char* texture_name);
 int main(int argc, char **argv)
 {
@@ -100,8 +116,7 @@ int main(int argc, char **argv)
 	std::cout<<"*       键盘输入0-7可以查看三面体递归生成球体过程             *"<<std::endl;
 	std::cout<<"*            鼠标每次点击画面会改变光源颜色                   *"<<std::endl;
 	std::cout<<"*            键盘输入'-'或'+'可以改变视角的远近               *"<<std::endl;
-	std::cout<<"*            键盘输入'-'或'+'可以改变视角的远近               *"<<std::endl;
-	std::cout<<"*菜单选择*\n*1:平行投影*\n*2:透视投影*\n*3:打开或关闭中心的线框球*\n*4:打开或关闭Alpha通道(透明通道)*\n*6启用Skybox*\n*6改变Skybox主题"<<std::endl;
+	std::cout<<"*菜单选择*\n*1:平行投影*\n*2:透视投影*\n*3:打开或关闭中心的线框球*\n*4:打开或关闭Alpha通道(透明通道)*\n*6启用Skybox*\n*6改变Skybox主题*"<<std::endl;
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowSize(winWidth, winHeight);
 	glutCreateWindow("HW5");
