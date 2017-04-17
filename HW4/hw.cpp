@@ -1,13 +1,11 @@
-
-/* Rotating cube demo with trackball*/
 #include <math.h>
 #include <stdlib.h>
-#include <GL/freeglut.h>
+#include <GLUT/glut.h>
 #include <iostream>
 #include <SOIL.h>
 #include <string>
-#pragma comment(lib,"SOIL.lib") 
-#define M_PI 3.14159
+//#pragma comment(lib,"SOIL.lib")
+//#define M_PI 3.14159
 
 #define bool int
 #define false 0
@@ -48,13 +46,14 @@ bool line_ball = false;
 bool alpha_test = true;
 bool show_background = false;
 bool change_background = false;
+GLfloat vertice = (GLfloat) -1.0;
 GLfloat view_size=2.0;
-char* alpha_string = "Enable or Disable Alpha";
+char* alpha_string = (char *) "Enable or Disable Alpha";
 GLfloat vertices[][3] = {
-	{ -1.0, -1.0, -1.0 }, { 1.0, -1.0, -1.0 }, { 1.0, 1.0, -1.0 }, { -1.0, 1.0, -1.0 },
-	{ -1.0, -1.0, 1.0 }, { 1.0, -1.0, 1.0 }, { 1.0, 1.0, 1.0 }, { -1.0, 1.0, 1.0 }
+	{ vertice, vertice, vertice }, { 1.0, vertice, vertice }, { 1.0, 1.0, vertice }, { vertice, 1.0, vertice },
+	{ vertice, vertice, 1.0 }, { 1.0, vertice, 1.0 }, { 1.0, 1.0, 1.0 }, { vertice, 1.0, 1.0 }
 };
-int size = 50;
+GLfloat size = 50.0;
 GLfloat verticesBig[][3] = {
 	{ -size, -size, -size }, { size, -size, -size }, { size, size, -size }, { -size, size, -size },
 	{ -size, -size, size }, { size, -size, size }, { size, size, size }, { -size, size, size }
@@ -300,9 +299,9 @@ void startMotion(int x, int y)
 	startX = x; startY = y;
 	curx = x; cury = y;
 	trackball_ptov(x, y, winWidth, winHeight, lastPos);
-	colorR = std::abs(sin(x));
-	colorG = std::abs(cos(y));
-	colorB = std::abs(sin(y));
+	colorR = (sin(x));
+	colorG = (cos(y));
+	colorB = (sin(y));
 	//std::cout<<"colorR:"<<colorR<<std::endl;
 }
 
